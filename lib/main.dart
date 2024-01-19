@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kisiler_uygulamasi/cubit/anasayfa_cubit.dart';
-import 'package:kisiler_uygulamasi/cubit/kisi_detay_cubit.dart';
-import 'package:kisiler_uygulamasi/cubit/kisi_kayit_cubit.dart';
-import 'package:kisiler_uygulamasi/views/anasayfa.dart';
+import 'package:kisiler_uygulamasi/cubit/home_page_cubit.dart';
+import 'package:kisiler_uygulamasi/cubit/person_detail_cubit.dart';
+import 'package:kisiler_uygulamasi/cubit/person_registration_cubit.dart';
+import 'package:kisiler_uygulamasi/views/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => KisiKayitCubit()),
-        BlocProvider(create: (context) => KisiDetayCubit()),
-        BlocProvider(create: (context) => AnasayfaCubit()),
+        BlocProvider(create: (context) => PersonRegistrationCubit()),
+        BlocProvider(create: (context) => PersonDetailCubit()),
+        BlocProvider(create: (context) => HomePageCubit()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const Anasayfa(),
+        home: const HomePage(),
       ),
     );
   }

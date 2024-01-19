@@ -1,75 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kisiler_uygulamasi/cubit/anasayfa_cubit.dart';
-import 'package:kisiler_uygulamasi/entity/kisiler.dart';
-import 'package:kisiler_uygulamasi/views/kisi_detay_sayfa.dart';
-import 'package:kisiler_uygulamasi/views/kisi_kayit_sayfa.dart';
+import 'package:kisiler_uygulamasi/cubit/home_page_cubit.dart';
+import 'package:kisiler_uygulamasi/entity/persons.dart';
+import 'package:kisiler_uygulamasi/views/person_detail_page.dart';
+import 'package:kisiler_uygulamasi/views/person_registration_page.dart';
 
-class Anasayfa extends StatefulWidget {
-  const Anasayfa({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<Anasayfa> createState() => _AnasayfaState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _AnasayfaState extends State<Anasayfa> {
-  bool aramaYapiliyorMu = false;
+class _HomePageState extends State<HomePage> {
+  bool isSearching = false;
 
   @override
   void initState() {
     super.initState();
-    context.read<AnasayfaCubit>().kisileriYukle();
+    context.read<HomePageCubit>().personsUpload();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: aramaYapiliyorMu ?
+        title: isSearching ?
            TextField(decoration: const InputDecoration(hintText: "Ara"),
-             onChanged: (aramaSonucu){
-               context.read<AnasayfaCubit>().ara(aramaSonucu);
+             onChanged: (searchresult){
+               context.read<HomePageCubit>().search(searchresult);
              },
            )
          : const Text("Kişiler"),
         actions: [
-          aramaYapiliyorMu ?
+          isSearching ?
           IconButton(onPressed: (){
-            setState((){ aramaYapiliyorMu = false;  });
-            context.read<AnasayfaCubit>().kisileriYukle();
+            setState((){ isSearching = false;  });
+            context.read<HomePageCubit>().personsUpload();
           }, icon: const Icon(Icons.cancel)) :
           IconButton(onPressed: (){
-            setState((){ aramaYapiliyorMu = true;  });
+            setState((){ isSearching = true;  });
           }, icon: const Icon(Icons.search))
         ],
       ),
-      body:BlocBuilder<AnasayfaCubit,List<Kisiler>>(
-        builder: (context,kisilerListesi){
-          if(kisilerListesi.isNotEmpty){
+      body:BlocBuilder<HomePageCubit,List<Persons>>(
+        builder: (context,personsList){
+          if(personsList.isNotEmpty){
             return ListView.builder(
-              itemCount: kisilerListesi.length,
+              itemCount: personsList.length,
               itemBuilder: (context,indeks){
-                var kisi = kisilerListesi[indeks];
+                var person = personsList[indeks];
                 return GestureDetector(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => KisiDetaySayfa(kisi: kisi)))
-                    .then((value){  context.read<AnasayfaCubit>().kisileriYukle();  });
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => PersonDetailPage(person: person)))
+                    .then((value){  context.read<HomePageCubit>().personsUpload();  });
                   },
                   child: Card(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Text("${kisi.kisi_ad} - ${kisi.kisi_tel}"),
+                          Text("${person.personName} - ${person.personNumber}"),
                           const Spacer(),
                           IconButton(onPressed: (){
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text("${kisi.kisi_ad} silinsin mi?"),
+                                  content: Text("${person.personName} silinsin mi?"),
                                   action: SnackBarAction(
                                     label: "EVET",
                                     onPressed: (){
-                                      context.read<AnasayfaCubit>().sil(int.parse(kisi.kisi_id));
+                                      context.read<HomePageCubit>().delete(int.parse(person.personId));
                                     },
                                   ),
                                 ),
@@ -89,8 +89,8 @@ class _AnasayfaState extends State<Anasayfa> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const KisiKayitSayfa()))
-                .then((value){  context.read<AnasayfaCubit>().kisileriYukle();  });
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const PersonRegistrationPage()))
+                .then((value){  context.read<HomePageCubit>().personsUpload();  });
           },
           child: const Icon(Icons.add),
       ),
