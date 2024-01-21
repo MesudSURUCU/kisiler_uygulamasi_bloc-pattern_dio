@@ -1,16 +1,6 @@
-# kisiler_uygulamasi
+# telephone_directory_app
+Internet-based operations : HTTP-Dio library
+State Management : Bloc(Cubit) Patterns
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+I have designed a phonebook application that uses the Dio library to fetch information from the internet, displays it on the main page, allows adding new contacts to the displayed list, and enables updating the information of existing contacts. Users can also delete saved contacts, and to prevent accidental deletions, the application utilizes a SnackBar to inform the user. To enhance the stability of the application, I employed the Bloc pattern for state management.
+ 
