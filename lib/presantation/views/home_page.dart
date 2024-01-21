@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kisiler_uygulamasi/constants/constants.dart';
 import 'package:kisiler_uygulamasi/cubit/home_page_cubit.dart';
 import 'package:kisiler_uygulamasi/models/entity/persons.dart';
 import 'package:kisiler_uygulamasi/presantation/views/person_detail_page.dart';
@@ -13,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool isSearching = false;
+    bool isSearching = false;
 
   @override
   void initState() {
@@ -26,12 +27,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: isSearching ?
-           TextField(decoration: const InputDecoration(hintText: "Ara"),
+           TextField(decoration: const InputDecoration(hintText: Constant.appbarHintText),
              onChanged: (searchresult){
                context.read<HomePageCubit>().search(searchresult);
              },
            )
-         : const Text("Kişiler"),
+         : const Text(Constant.appbarText),
         actions: [
           isSearching ?
           IconButton(onPressed: (){
@@ -57,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                   },
                   child: Card(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: Constant.all8,
                       child: Row(
                         children: [
                           Text("${person.personName} - ${person.personNumber}"),
@@ -67,14 +68,14 @@ class _HomePageState extends State<HomePage> {
                                 SnackBar(
                                   content: Text("${person.personName} silinsin mi?"),
                                   action: SnackBarAction(
-                                    label: "EVET",
+                                    label: Constant.snacbarLabel,
                                     onPressed: (){
                                       context.read<HomePageCubit>().delete(int.parse(person.personId));
                                     },
                                   ),
                                 ),
                               );
-                          }, icon: const Icon(Icons.delete_outline,color: Colors.black54,))
+                          }, icon: const Icon(Icons.delete_outline,color: Constant.deleteIconColor))
                         ],
                       ),
                     ),

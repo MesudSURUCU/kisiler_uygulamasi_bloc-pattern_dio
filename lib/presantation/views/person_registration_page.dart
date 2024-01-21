@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kisiler_uygulamasi/cubit/person_registration_cubit.dart';
-import 'package:kisiler_uygulamasi/presantation/views/home_page.dart';
+import 'package:kisiler_uygulamasi/presantation/components/registration_elevated_button.dart';
+import 'package:kisiler_uygulamasi/presantation/components/text_field_name.dart';
+import 'package:kisiler_uygulamasi/presantation/components/text_field_number.dart';
+
 
 class PersonRegistrationPage extends StatefulWidget {
   const PersonRegistrationPage({Key? key}) : super(key: key);
@@ -24,12 +25,9 @@ class _PersonRegistrationPageState extends State<PersonRegistrationPage> {
           padding: const EdgeInsets.only(left: 50,right: 50),
           child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextField(controller: tfPersonName,decoration: const InputDecoration(hintText: "Kişi Ad"),),
-              TextField(controller: tfPersonNumber,decoration: const InputDecoration(hintText: "Kişi Tel"),),
-              ElevatedButton(onPressed: (){
-                context.read<PersonRegistrationCubit>().registration(tfPersonName.text, tfPersonNumber.text);
-                Navigator.push(context, MaterialPageRoute(builder: (context) =>const HomePage()));
-              }, child: const Text("KAYDET"))
+              TextFieldNameWidget(tfPersonName: tfPersonName),
+              TextFieldNumberWidget(tfPersonNumber: tfPersonNumber),
+              RegistrationElevatedButton(tfPersonName: tfPersonName, tfPersonNumber: tfPersonNumber)
             ],
           ),
         ),
@@ -37,3 +35,4 @@ class _PersonRegistrationPageState extends State<PersonRegistrationPage> {
     );
   }
 }
+
