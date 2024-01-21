@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kisiler_uygulamasi/cubit/home_page_cubit.dart';
 import 'package:kisiler_uygulamasi/cubit/person_detail_cubit.dart';
 import 'package:kisiler_uygulamasi/cubit/person_registration_cubit.dart';
-import 'package:kisiler_uygulamasi/views/home_page.dart';
+import 'package:kisiler_uygulamasi/presantation/views/home_page.dart';
 
 void main() {
   runApp(const MyApp());

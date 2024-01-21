@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:kisiler_uygulamasi/entity/persons.dart';
-import 'package:kisiler_uygulamasi/entity/persons_reply.dart';
+import 'package:kisiler_uygulamasi/models/entity/persons.dart';
+import 'package:kisiler_uygulamasi/models/entity/persons_reply.dart';
 
 class PersonsDaoRepository {
   List<Persons> parsePersonsReply(String reply){

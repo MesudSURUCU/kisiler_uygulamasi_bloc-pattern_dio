@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kisiler_uygulamasi/entity/persons.dart';
-import 'package:kisiler_uygulamasi/repo/personsdao_repository.dart';
+import 'package:kisiler_uygulamasi/models/entity/persons.dart';
+import 'package:kisiler_uygulamasi/models/repo/personsdao_repository.dart';
 
 class HomePageCubit extends Cubit<List<Persons>> {
   HomePageCubit() : super(<Persons>[]);

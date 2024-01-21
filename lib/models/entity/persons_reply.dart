@@ -1,4 +1,4 @@
-import 'package:kisiler_uygulamasi/entity/persons.dart';
+import 'package:kisiler_uygulamasi/models/entity/persons.dart';
 
 class PersonsReply {
   late List<Persons> persons;

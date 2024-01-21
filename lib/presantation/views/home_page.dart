@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kisiler_uygulamasi/cubit/home_page_cubit.dart';
-import 'package:kisiler_uygulamasi/entity/persons.dart';
-import 'package:kisiler_uygulamasi/views/person_detail_page.dart';
-import 'package:kisiler_uygulamasi/views/person_registration_page.dart';
+import 'package:kisiler_uygulamasi/models/entity/persons.dart';
+import 'package:kisiler_uygulamasi/presantation/views/person_detail_page.dart';
+import 'package:kisiler_uygulamasi/presantation/views/person_registration_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kisiler_uygulamasi/repo/personsdao_repository.dart';
+import 'package:kisiler_uygulamasi/models/repo/personsdao_repository.dart';
 
 class PersonDetailCubit extends Cubit<void> {
   PersonDetailCubit() : super(0);
